@@ -9,6 +9,8 @@ public class cumulative {
    //cumulativeFrac();
    //deposit(input);
    //cumulativeAvg(input);
+   //concStr(input);
+   neWord(input);
    
    }
    
@@ -58,5 +60,31 @@ public class cumulative {
    } 
    System.out.println("The average of the range 1 - " + range + " is: " + avg);  
    return avg;
+  }
+  
+  //class example of cumulative string concatination
+  public static void concStr(Scanner input) {
+  
+   String threeStr = "";
+   System.out.print("Enter a word: ");
+   String word = input.next();
+   
+   for (int i = 1; i <= 3; i++) {
+       threeStr += word;     
+   }
+   System.out.println(threeStr);
+  }
+  
+  //studder cumulative string
+  public static void neWord(Scanner input) {
+  
+   System.out.print("Enter a word: ");
+   String word = input.next();
+   String twice = "";
+   for (int i = 0; i < word.length(); i++) {
+       char c = word.charAt(i);
+       twice = twice + c + c;        
+   }
+   System.out.println(twice);
   }
 }
