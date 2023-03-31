@@ -1,141 +1,138 @@
-/*
-name: Tylor Roth
-date: Mar ** 2023
-description: guessing game app
-grade:
+
+/* 
+Name: Tylor Roth
+Date: Mar 31, 2023
+Description: Guessing game
+Grade: 100%
 */
-import java.util. *;
-
-public class GameRoth {
-
-   public static void main(String [] args) {
+import java.util.*;
+public class GameRoth 
+{
+   public static void main(String[] args) {
       Scanner input = new Scanner(System.in);
-      //action();
+      interact(input);
+      action(input);
    }
-   /*
-   ask user for positive integer if not valid keep asking
-   */
-   public static void prompt() {
-   /*
-   Enter a low value : cannot be negative
-   *invalid value
    
-   Enter the high value: cannot be lower than low value
-   You entered an invalid value max. Max must be greater than min. lets start
-ball over again
-   */
+   //prompt for positive number
+   public static int prompt(Scanner input, String s)
+   {
+      int num = 0;
+      System.out.print(s);
+      num = input.nextInt();
+      while (num < 0)
+      {  
+         System.out.println("invalid input");
+         System.out.print(s);
+         num = input.nextInt();
+      }
+      return num; 
    }
-   //ask for user name follow output example
-   public static void interact() {
-   /*
-   Hello, I am a computer playing a guessing game with you. What would you
-like to call me? Maria
+   //app header/intro
+   public static void interact(Scanner input)
+   {
+      System.out.print("Hello, I am a computer playing a guessing game with you. What would you \n" +
+      "like to call me? ");
+      String npc = input.nextLine();
+      for(int i = 1; i <= 75; i++) {
+         System.out.print("-");
+      } 
+      System.out.println();
+      System.out.println("Wow I really like the name " + npc);
+      System.out.print("What is your name: ");
+      String player = input.nextLine();
+      System.out.print("Hey " + player + " I am excited to play the guessing game with you \n" +
+      "I will think of a number between a low and a high values enerted by you \n" +
+      "and will allow you to guess until you get it.\n" +
+      "For each guess, I will give you a hint whether the \n" +
+      "right answer is higher or lower than your guess. ");
+      System.out.println();
+      for(int i = 1; i <= 75; i++) {
+         System.out.print("-");
+      } 
+      System.out.println();
+   }
+   //results comparing guess to random number
+   public static String match(int guess, int randNum)
+   {
+      if (guess > randNum) 
+      {
+         return "Lower";
+      } 
+      else if(guess < randNum) 
+      {
+         return "Higher";
+      } 
+      else 
+      {
+         return "Match";
+      }
+   }
+   //this method displays the final result on the screen.
+   public static void report(int numGames, int totGuesses)
+   {
+      System.out.println("Total results: ");
+      System.out.println("Total games = " + numGames);
+      System.out.println("Total guesses = " + totGuesses);
+   }
+//generates random number and guess number
+   public static int funGame(Scanner input, int min, int max)
+   {   
+      Random rand = new Random();
+      int randNum = rand.nextInt(min, max)+ 1;
+      //Guess initializer
+      int userGuess = 0;
+      //numGuesses initializer
+      int numGuesses = 0;
+      System.out.println("I am thinking of a numbr between " + min + " and " + max);
+      System.out.println("give me a few seconds to think , then enter any key to continue");
+      //while the user's guess does not equal the computer pick
+      while (userGuess != randNum)
+      {
+         numGuesses++;
+         System.out.print("Guess? ");
+         userGuess = input.nextInt();
+         //call match method to retrieve results
+         String result = match(userGuess, randNum);
+         if (result == "Match")
+         {
+            System.out.println("CONGRATULATIONS! You got it right in " + numGuesses + " guesses!");
+         }
+         else 
+         {
+            System.out.print(result + "\n");
+         }
+      }//end of while loop
+      System.out.println();
+      return numGuesses;
+   }
 
-Wow I really like the name Maria
-What is your name: Jose
-Hey Jose I am excited to play the guessing game with you
-I will think of a number between a low and a high values enerted by you
-and will allow you to guess until you get it.
-For each guess, I will give you a hint whether the
-right answer is higher or lower than your guess.
-   */
-   
-   }
-   //compares 2 numbers and returns string (match, lower, higher)
-   public static void match() {
-   /* this method gets two numbers called guess and randNum
-if guess is greater than randNum then return "Lower"
-else if guess is less than randNum return "Higher"
-else return match*/
-   }
-   //displays final results to screen
-   public static void report() {
-   /*
-this method displays the result on the screen.
-This method gets two parameters representing the number of the games the person
-played and the total guesses
-made for all the games played
-*/
-   }
-   //plays game with user using algorithm
-   public static void funGame() {
-   /*This method plays the game. it will generate a random number between min and
-max.
-asks the user to guess the number generated by the computer. As long as the
-user is not making the correct guess
-will keep propmting the user. Once the user makes a correct guess, it will end
-the game
-Also it keeps track of the number of the guesses that the user has made.
-Return: This method returns the number of the guesses the person made
-Refer to the sample output */
-//1. create a Random class object
-//2. Generate a random number between the given min and max and store it
-//in a variable. This variable is holding the computer pick
-//3. declare a variable to hold the user's guess, initialize it to zero
-//4. declare a variable to hold the number of the guesses the person will
-//make per game, set it to zero
-//5. flush the buffer
-//6. prompt the user that I am thinking of a numbr between min and max. the
-//actual min and max values must be displayed(refer to the sample output
-//7. display the message saying give me a few seconds to think , then enter
-//8. flush the buffer
-// while the user's guess does not equal the computer pick
-//{
-//increment the variable declared in step 4
-//prompt the user to enter a guess
-//read the user's input and store the user's input in the variable you
-//declared at step 3
-//call the method match and store the return of this method in a
-//variable called result
-//if thevariable result contains "match"
-//{
-//display the congrat message
-//display the variable declared in step 4 which holds the number
-//of the guesses that the person made
-//}
-// else
-// display the the content of the variable result
-//}//end of while loop
-//System.out.println();
-//return 0;// change this line to return the variable you declared at step 4
-//which is the number of the guesses made
-   }
-   // starts running the code by implementation
-   public static void action() {
-   /* This method calls the other methods to get the game started.
-public static void action(Scanner console)
-{
-int numGames = 0; // total number of the games played by the person
-int totGuesses = 0; // total guesses for all the games played
-int min = 0; // holds the min value entered by the user
-int max = 0 ;//holds the max value entered by the user
-String repeat = "yes";
-while (repeat.equalsIgnoreCase("yes")) {// allows the player to play many
-rounds of the game
-String s = "Enter a low value :";
-String s1 = "Enter the high value:";
-//1. call the method prompt and pass the console, and s value to it, store
-the result in the vaiable min
-//2. call the method prompt and pass console, and s1 value to it, store
-the result in the vaiable max
-// while max is less than min
-{
-System.out.println("You entered an invalid value for max. Max must be
-greater than min. lets start all over again\n");
-//call the method prompt and pass console and s
-//call the method prompt and pass console and s1
-}//end while
-//call the method funGame with the proper parameters and store the result
-in a variable called guesses
-//add the guesses to totGusses
-//increment numGames
-//prompt the user if they want to play again or not
-//read the user's respond in the varibale repeat
-System.out.println();
-}
-//call the method report and pass numGames and totGusses
-}
-*/
-
+   public static void action(Scanner input)
+   {
+      int numGames = 0; // total number of the games played by the person
+      int totGuesses = 0; // total guesses for all the games played
+      String repeat = "yes" ;
+      while (repeat.equalsIgnoreCase("yes")) {
+      String s = "Enter a low value: ";
+      String s1 = "Enter the high value: ";
+      //checks if number are valid
+      int min = prompt(input, s);
+      int max = prompt(input, s1);
+      while (max <= min) //invalid number
+      {
+         System.out.println("You entered an invalid value for max. Max must be \n" +
+         "greater than min. lets start all over again\n");
+          min = prompt(input, s);
+          max = prompt(input, s1);
+      }//end while
+      int guesses = funGame(input, min, max);
+      //add the guesses to totGusses
+      totGuesses += guesses;
+      numGames++;//increment number of games
+      System.out.print("Do you want to play again? ");
+      repeat = input.next();
+      System.out.println();
+      }
+      report(numGames, totGuesses);
    }
 }
