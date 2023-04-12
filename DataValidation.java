@@ -8,7 +8,7 @@ public class DataValidation {
       //System.out.print(kb);
       boolean cont = true;
     //control loop
-      while(cont) {
+      /*while(cont) {
          question(input, rand);
          System.out.print("Continue? ");
          String choose = input.next();
@@ -17,7 +17,14 @@ public class DataValidation {
          } else {
             question(input, rand);
          }
-       }
+       } */
+       boolean accept = lotto(rand);
+      if (accept) {
+         System.out.println("Lucky 7");
+      }
+      else {
+         System.out.println("No luck");
+      }
    }
    
    
@@ -54,5 +61,16 @@ public class DataValidation {
          
       }while(wrong < 3);
       System.out.println("Thanks for trying");
+   }
+   //generates random numbers 1-30 * 10 if number == 7 exit
+   public static boolean lotto(Random rand) {
+      for (int i = 1; i <= 10; i++) {
+         int seven = rand.nextInt(30) + 1;
+         System.out.print(seven + " ");
+         if (seven == 7) {
+            return true;
+         }
+      }
+      return false;
    }
 }
