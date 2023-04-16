@@ -84,7 +84,7 @@ public class GameRoth
       int userGuess = 0;
       //numGuesses initializer
       int numGuesses = 0;
-      System.out.println("I am thinking of a numbr between " + min + " and " + max);
+      System.out.println("I am thinking of a number between " + min + " and " + max);
       System.out.println("give me a few seconds to think , then enter any key to continue");
       //while the user's guess does not equal the computer pick
       while (userGuess != randNum)
